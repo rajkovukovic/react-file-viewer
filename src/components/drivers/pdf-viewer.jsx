@@ -113,14 +113,17 @@ export default class PDFDriver extends React.Component {
     const { pdf, containerWidth, zoom } = this.state;
     if (!pdf) return null;
     const pages = Array.apply(null, { length: pdf.numPages });
+    /* eslint-disable react/no-array-index-key */
     return pages.map((v, i) => (
       (<PDFPage
+        key={i}
         index={i + 1}
         pdf={pdf}
         containerWidth={containerWidth}
         zoom={zoom * INCREASE_PERCENTAGE}
       />)
     ));
+    /* eslint-enable react/no-array-index-key */
   }
 
   renderLoading() {
